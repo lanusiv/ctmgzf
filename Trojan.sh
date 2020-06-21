@@ -163,8 +163,8 @@ EOF
 	if test -s /usr/src/trojan-cert/fullchain.cer; then
         cd /usr/src
 	#wget https://github.com/trojan-gfw/trojan/releases/download/v1.13.0/trojan-1.13.0-linux-amd64.tar.xz
-	# wget https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
-    wget https://github.com/trojan-gfw/trojan/releases/download/v1.16.0/trojan-1.16.0-linux-amd64.tar.xz
+	#wget https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
+	wget https://github.com/trojan-gfw/trojan/releases/download/v1.16.0/trojan-1.16.0-linux-amd64.tar.xz
 	tar xf trojan-1.*
 	#下载trojan客户端--
 	wget https://github.com/atrandys/trojan/raw/master/trojan-cli.zip
@@ -254,21 +254,21 @@ EOF
 	mkdir /usr/share/nginx/html/${trojan_path}
 	mv /usr/src/trojan-cli/trojan-cli.zip /usr/share/nginx/html/${trojan_path}/
 	#增加启动脚本
-	
+
 cat > ${systempwd}trojan.service <<-EOF
-[Unit]  
-Description=trojan  
-After=network.target  
-   
-[Service]  
-Type=simple  
+[Unit]
+Description=trojan
+After=network.target
+
+[Service]
+Type=simple
 PIDFile=/usr/src/trojan/trojan/trojan.pid
-ExecStart=/usr/src/trojan/trojan -c "/usr/src/trojan/server.conf"  
-ExecReload=  
-ExecStop=/usr/src/trojan/trojan  
-PrivateTmp=true  
-   
-[Install]  
+ExecStart=/usr/src/trojan/trojan -c "/usr/src/trojan/server.conf"
+ExecReload=
+ExecStop=/usr/src/trojan/trojan
+PrivateTmp=true
+
+[Install]
 WantedBy=multi-user.target
 EOF
 
@@ -291,7 +291,7 @@ EOF
 	red "https证书没有申请成果，本次安装失败"
 	red "================================"
 	fi
-	
+
 else
 	red "================================"
 	red "域名解析地址与本VPS IP地址不一致"
@@ -350,7 +350,7 @@ start_menu(){
     install_trojan
     ;;
     2)
-    bbr_boost_sh 
+    bbr_boost_sh
     ;;
     3)
     remove_trojan
